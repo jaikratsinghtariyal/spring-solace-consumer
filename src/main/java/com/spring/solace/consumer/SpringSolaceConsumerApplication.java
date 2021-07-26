@@ -20,9 +20,12 @@ public class SpringSolaceConsumerApplication {
         return "Hello From Spring and Kubernetes example";
     }
 
-    @GetMapping("/rest/tutorials")
+    @GetMapping(value="/rest/tutorials", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getHello()  {
-        return "Hello From Spring and Kubernetes example";
+        return "args\": {\n" +
+                "    \"hello\": \"world\",\n" +
+                "    \"solace\": \"cool\"\n" +
+                "  }";
     }
 
     @PostMapping(value="/T/rest/pubsub", consumes = MediaType.TEXT_PLAIN_VALUE)
