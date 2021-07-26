@@ -2,7 +2,9 @@ package com.spring.solace.consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.activation.MimeType;
@@ -20,17 +22,28 @@ public class SpringSolaceConsumerApplication {
         return "Hello From Spring and Kubernetes example";
     }
 
-    @GetMapping(value="/rest/tutorials", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getHello()  {
-        return "\"args\": {\n" +
-                "    \"hello\": \"world\",\n" +
-                "    \"solace\": \"cool\"\n" +
-                "  }";
+    @GetMapping(value="/rest/tutorials")
+    public ResponseEntity getHello()  {
+        Person person = new Person("Jaik");
+        return new ResponseEntity(person, HttpStatus.OK);
     }
 
-    @PostMapping(value="/T/rest/pubsub", consumes = MediaType.TEXT_PLAIN_VALUE)
+    @PostMapping(value="/T/rest/pubsub")
     public void postHello(@RequestBody String str)  {
         System.out.println("Request:- " + str);
         //return "Hello From Spring and Kubernetes example";
     }
+
+    class Person {
+        public String getName() {
+            return name;
+        }
+
+        String name;
+
+        Person(String name) {
+            this.name = name;
+        }
+    }
+
 }
