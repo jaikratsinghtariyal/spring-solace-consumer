@@ -22,7 +22,7 @@ public class SpringSolaceConsumerApplication {
 
     @GetMapping(value="/rest/tutorials", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getHello()  {
-        return "args\": {\n" +
+        return "\"args\": {\n" +
                 "    \"hello\": \"world\",\n" +
                 "    \"solace\": \"cool\"\n" +
                 "  }";
