@@ -24,7 +24,7 @@ public class SpringSolaceConsumerApplication {
 
     @GetMapping(value="/rest/tutorials")
     public ResponseEntity getHello()  {
-        Person person = new Person("Jaik");
+        Person person = new Person("Consumer1");
         return new ResponseEntity(person, HttpStatus.OK);
     }
 
